@@ -19,7 +19,7 @@ class kmeans():
             if np.all(self.centroids == new_centroids):
                 break
             self.centroids = new_centroids
-        return self.centroids
+        return self.centroids, self.labels
 
     def predict(self, X):
         distances = np.sqrt(((X - self.centroids[:, np.newaxis])**2).sum(axis=2))

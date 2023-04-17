@@ -29,11 +29,13 @@ class KMedoids:
                 new_cost = np.sum(np.min(new_distances, axis=0))
                 # Actualizar el medoid si se reduce el costo
                 if new_cost < cost:
-                    self.medoids[k] = X[indices[np.argmin(new_distances, axis=0)]]
+                    #self.medoids[k] = X[indices[np.argmin(new_distances, axis=0)]]
+                    self.medoids[k] = new_medoids[k]
                     cost = new_cost
                 else:
                     # Si no se puede reducir el costo, mantener el medoid actual
                     self.medoids[k] = self.medoids[k]
+        return self.medoids, self.labels
     
     def predict(self, X):
         distances = np.sqrt(((X - self.medoids[:, np.newaxis])**2).sum(axis=2))
