@@ -1,43 +1,36 @@
 import numpy as np
 
 class KMedoids:
-    def __init__(self, K, max_iters=100):
-        self.K = K
-        self.max_iters = max_iters
+    def __init__(self, n_clusters=2, max_iter=100, random_state=None):
+        self.n_clusters = n_clusters
+        self.max_iter = max_iter
+        self.random_state = random_state
     
     def fit(self, X):
-        # Inicializar medoids aleatorios
-        self.medoids = X[np.random.choice(X.shape[0], self.K, replace=False)]
-        for i in range(self.max_iters):
-            # Calcular la distancia entre los datos y los medoids
-            distances = np.sqrt(((X - self.medoids[:, np.newaxis])**2).sum(axis=2))
-            # Asignar cada punto al medoid más cercano
-            self.labels = np.argmin(distances, axis=0)
-            # Calcular el costo total
-            cost = np.sum(np.min(distances, axis=0))
-            # Intentar actualizar los medoids
-            for k in range(self.K):
-                # Obtener los puntos asignados a este medoid
-                mask = (self.labels == k)
-                if np.sum(mask) == 0:
-                    # Si no hay puntos asignados a este medoid, saltar a la siguiente iteración
-                    continue
-                # Calcular el costo si se cambia el medoid a cada punto asignado
-                indices = np.where(mask)[0]
-                new_medoids = X[indices]
-                new_distances = np.sqrt(((X - new_medoids[:, np.newaxis])**2).sum(axis=2))
-                new_cost = np.sum(np.min(new_distances, axis=0))
-                # Actualizar el medoid si se reduce el costo
-                if new_cost < cost:
-                    #self.medoids[k] = X[indices[np.argmin(new_distances, axis=0)]]
-                    self.medoids[k] = new_medoids[k]
-                    cost = new_cost
-                else:
-                    # Si no se puede reducir el costo, mantener el medoid actual
-                    self.medoids[k] = self.medoids[k]
-        return self.medoids, self.labels
+        # Randomly initialize medoids
+        #rng = np.random.RandomState(self.random_state)
+        rng = np.random.RandomState(2)
+        self.medoids = rng.choice(X.shape[0], self.n_clusters, replace=False)
+        
+        for i in range(self.max_iter):
+            # Assign each point to the nearest medoid.
+            distances = np.abs(X[:, np.newaxis] - X[self.medoids])
+            cluster_labels = np.argmin(np.sum(distances, axis=2), axis=1)
+            
+            # Updating the medoids
+            for j in range(self.n_clusters):
+                mask = cluster_labels == j
+                cluster_points = X[mask]
+                cluster_distances = np.sum(np.abs(cluster_points[:, np.newaxis] - cluster_points), axis=2)
+                costs = np.sum(cluster_distances, axis=1)
+                best_medoid_idx = np.argmin(costs)
+                self.medoids[j] = np.where(mask)[0][best_medoid_idx]
+        
+        self.cluster_labels_ = cluster_labels
+        self.medoids_ = [X[i,:] for i in self.medoids]
+        return self.medoids_, self.cluster_labels_
     
     def predict(self, X):
-        distances = np.sqrt(((X - self.medoids[:, np.newaxis])**2).sum(axis=2))
-        labels = np.argmin(distances, axis=0)
-        return labels
+        distances = np.abs(X[:, np.newaxis] - X[self.medoids])
+        cluster_labels = np.argmin(np.sum(distances, axis=2), axis=1)
+        return cluster_labels

@@ -9,6 +9,7 @@ import cv2
 
 data = toy_data_2()
 
+#Plot and apply of kmeans sklearn
 def kmeans_ls_result(k=4):
     lista_labels_dat=["noisy_circles","noisy_moons","blobs","no_structure","aniso","varied"]
     fig = plt.figure(figsize=(17, 5))
@@ -34,6 +35,7 @@ def kmeans_ls_result(k=4):
     res, im_png = cv2.imencode(".jpeg", img)
     return im_png
 
+#Plot and apply of kmedoids sklearn
 def kmedoids_ls_result(k=4):
     lista_labels_dat=["noisy_circles","noisy_moons","blobs","no_structure","aniso","varied"]
     fig = plt.figure(figsize=(17, 5))
@@ -59,10 +61,10 @@ def kmedoids_ls_result(k=4):
     res, im_png = cv2.imencode(".jpeg", img)
     return im_png
 
-def DBSCAN_ls_result(k=4):
+#Plot and apply of DBSCAN sklearn
+def DBSCAN_ls_result():
     lista_labels_dat=["noisy_circles","noisy_moons","blobs","no_structure","aniso","varied"]
     fig = plt.figure(figsize=(17, 5))
-    k=k     #clusters
     i=0
     for d in data:
         X=d[0]
@@ -70,7 +72,7 @@ def DBSCAN_ls_result(k=4):
         #kmeans
         ax = fig.add_subplot(1, len(data), i+1)
         ax.set_title("Plot "+lista_labels_dat[i])
-        clustering = DBSCAN(eps=0.3, min_samples=10).fit(X)
+        clustering = DBSCAN(eps=0.2, min_samples=10).fit(X)
         y_pred = clustering.fit_predict(X)
         plt.scatter(X[:, 0], X[:, 1], c=y_pred)
         labels = clustering.labels_
@@ -85,6 +87,7 @@ def DBSCAN_ls_result(k=4):
     res, im_png = cv2.imencode(".jpeg", img)
     return im_png
 
+#Plot and apply of SpectralClustering sklearn
 def SpectralClustering_ls_result(k=4):
     lista_labels_dat=["noisy_circles","noisy_moons","blobs","no_structure","aniso","varied"]
     fig = plt.figure(figsize=(17, 5))
@@ -96,7 +99,7 @@ def SpectralClustering_ls_result(k=4):
         #kmeans
         ax = fig.add_subplot(1, len(data), i+1)
         ax.set_title("Plot "+lista_labels_dat[i])
-        spectralClustering = SpectralClustering(n_clusters=k, random_state=0).fit(X)
+        spectralClustering = SpectralClustering(n_clusters=k,eigen_solver="arpack",affinity="nearest_neighbors",).fit(X)
         y_pred = spectralClustering.fit_predict(X)
         plt.scatter(X[:, 0], X[:, 1], c=y_pred)
         ax.set_xticks(())

@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 from sklearn import cluster, datasets, mixture
 import numpy as np
+
 #Creating toy data
 def toy_data():
     return make_blobs(
@@ -20,7 +21,7 @@ def toy_data():
 def plot_some(n_clusters,k_means_labels,k_means_cluster_centers,X,k_medoids_labels,k_medoids_cluster_centers,y,distance_centers,distance_kmeans,distance_kmedoids):
     fig = plt.figure(figsize=(9, 5))
     fig.subplots_adjust(left=0.02, right=0.98, bottom=0.05, top=0.9)
-    colors = ["#1100E2","#00E518","#E5FF00","#830095","#16F8FF","#FF3E0E"]
+    colors = ["#E5FF00","#830095","#1100E2","#00E518","#16F8FF","#FF3E0E"]
     colors = colors[:n_clusters]
 
     #original
