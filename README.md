@@ -28,14 +28,14 @@ Shortcomings: it is not always infallible and can be difficult to apply in data 
 ### 5. Let’s use the newly created modules in unsupervised to cluster some toy data
 #### b. Plot the resulting dataset. How many clusters are there? How far are they from one another?
 Three clusters. The distance was calculated using L2 (Euclidean distance) starting from the original centers, then with k-means and k-medoids.
-![original cluster plot, applied kmeans and kmedoids](plots\plot_globs.jpeg)
+![original cluster plot, applied kmeans and kmedoids](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_globs.jpeg)
 #### c. For both k-means and k-medoids (your implementations), calculate the silhouette plots and coefficients for each run, iterating K from 1 to 5 clusters. 
 
 ##### k-means 
-![Silhouette and plots cluster for k-means with k 2 to 6](plots\kmeans_clusters.jpeg)
+![Silhouette and plots cluster for k-means with k 2 to 6](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/kmeans_clusters.jpeg)
 
 ##### k-medoids 
-![Silhouette and plots cluster for k-medoids with k 2 to 6](plots\kmedoids_clusters.jpeg)
+![Silhouette and plots cluster for k-medoids with k 2 to 6](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/kmedoids_clusters.jpeg)
 
 #### d.	What number of K got the best silhouette score? 
 K=2 obtained the best result in both k-means and k-medoids with 0.705.
@@ -45,28 +45,28 @@ On the figures it can be observed that the best results were obtained with k equ
 
 ### 6. Use the following code snippet to create different types of scattered data:
 #### a. Plot the different datasets in separate figures. What can you say about them?
-![different data plot](plots\plot_dif_data.jpeg)
+![different data plot](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data.jpeg)
 
 Different graphs, the first two noisy circles and noisy moons with nonlinear data, blobs and aniso more structured data and with a marked separation, the unstructured and varied graphs have scattered data.
 
 #### b. Apply k-means, k-medoids, DBSCAN and Spectral Clustering from Scikit-Learn over each dataset and compare the results of each algorithm with respect to each dataset.
 
 ##### K-means cluster k=3
-![different data plot kmeans analysis](plots\plot_dif_data_kmeans_ls.jpeg)
+![different data plot kmeans analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_kmeans_ls.jpeg)
 Observations: k-means had good clustering in the blobs plots, unstructured and varied, where the groups are defined and the centroids located in the average of the data. For the other plots the clusters are not very good and errors in the assignments are observed.
 
 ##### K-medoids cluster 
-![different data plot kmedoids analysis](plots\plot_dif_data_kmedoid_ls.jpeg)
+![different data plot kmedoids analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_kmedoid_ls.jpeg)
 Observations: Similar to k-means, k-medoids obtained good clustering in the blobs, unstructured and variational plots, where the clusters look defined and the medoids located at the mean of the data. For the other plots the clusters are not very good and errors in the assignments are observed.
 
 ##### DBSCAN cluster with eps=0.2, min_samples=10
-![different data plot DBSCAN analysis](plots\plot_dif_data_DBSCAN_ls.jpeg)
+![different data plot DBSCAN analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_DBSCAN_ls.jpeg)
 Observations: DBSCAN had very good results in the noisy circles and noisy moons plots, properly clustering the data. In the rest of the plots the results are not good and the clusters cannot be appreciated.
 
 By modifying the epsilon parameter to 1, better results were obtained for the blobs and variance plots, better clustering and the elimination of "noise" in the clusters can be observed.
 
 ##### Spectral clustering k=3
-![different data plot Spectral clustering analysis](plots\plot_dif_data_SpectralClustering_ls.jpeg)
+![different data plot Spectral clustering analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_SpectralClustering_ls.jpeg)
 Observations: Spectral clustering obtained very good result in general, with K=2 it can be seen that almost in all graphs it performed an acceptable clustering. Especially for the noisy circles and noisy moons data.
 
 Spectral clustering with K=3 performed a better clustering of the blobs, nested and varied data.
