@@ -1,3 +1,9 @@
+# Requirements
+pip install -r requirements.txt
+
+# Run
+uvicorn main:app --reload
+
 # lab2_MLII
 ## Clustering
 ### 1. Research about the Spectral Clustering method, and answer the following questions:
