@@ -55,7 +55,7 @@ Different graphs, the first two noisy circles and noisy moons with nonlinear dat
 ![different data plot kmeans analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_kmeans_ls.jpeg)
 Observations: k-means had good clustering in the blobs plots, unstructured and varied, where the groups are defined and the centroids located in the average of the data. For the other plots the clusters are not very good and errors in the assignments are observed.
 
-##### K-medoids cluster 
+##### K-medoids cluster k=3
 ![different data plot kmedoids analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_kmedoid_ls.jpeg)
 Observations: Similar to k-means, k-medoids obtained good clustering in the blobs, unstructured and variational plots, where the clusters look defined and the medoids located at the mean of the data. For the other plots the clusters are not very good and errors in the assignments are observed.
 
@@ -65,7 +65,7 @@ Observations: DBSCAN had very good results in the noisy circles and noisy moons 
 
 By modifying the epsilon parameter to 1, better results were obtained for the blobs and variance plots, better clustering and the elimination of "noise" in the clusters can be observed.
 
-##### Spectral clustering k=3
+##### Spectral clustering k=2
 ![different data plot Spectral clustering analysis](https://github.com/SantiRGW/lab2_MLII/blob/main/plots/plot_dif_data_SpectralClustering_ls.jpeg)
 Observations: Spectral clustering obtained very good result in general, with K=2 it can be seen that almost in all graphs it performed an acceptable clustering. Especially for the noisy circles and noisy moons data.
 
